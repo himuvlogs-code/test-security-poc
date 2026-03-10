@@ -1,0 +1,13 @@
+name: Test Injection PoC
+on:
+  pull_request:
+    types: [review_requested]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test injection
+        run: |
+          teams='${{ toJson(github.event.pull_request.requested_teams) }}'
+          echo "Teams: $teams"
